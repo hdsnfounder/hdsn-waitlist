@@ -4,6 +4,17 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>HDSN — Request Access</title>
+<script>
+  // Force the page to always open at the top, overriding Safari/iOS's
+  // automatic scroll-position restoration for previously-visited URLs.
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  window.scrollTo(0, 0);
+  window.addEventListener('pageshow', function(){ window.scrollTo(0, 0); });
+  document.addEventListener('DOMContentLoaded', function(){ window.scrollTo(0, 0); });
+  window.addEventListener('load', function(){ window.scrollTo(0, 0); });
+</script>
 <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌱</text></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,10 +39,6 @@
     color:var(--ivory);
     font-family:'Space Mono', monospace;
     overflow-x:hidden;
-    min-height:100vh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
     padding:32px 20px;
     position:relative;
   }
@@ -57,6 +64,7 @@
     width:100%;
     max-width:460px;
     min-width:0;
+    margin:auto;
   }
 
   /* eyebrow */
@@ -365,7 +373,13 @@
 
   /* ---- Desktop layout ---- */
   @media (min-width: 900px){
-    body{ padding:48px; }
+    body{
+      padding:48px;
+      min-height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+    }
 
     .stage{
       max-width:1160px;
@@ -512,6 +526,7 @@
         <div class="field">
           <input type="text" id="professionInput" name="profession" placeholder="what do you do?" required autocomplete="off">
         </div>
+        <input type="text" name="_gotcha" style="display:none" tabindex="-1" autocomplete="off">
         <button type="submit">Reserve My Access</button>
       </form>
 
